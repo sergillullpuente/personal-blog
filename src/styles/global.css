@@ -1,6 +1,9 @@
 html {
-  background-color: #f1f5f9;
   font-family: sans-serif;
+  background-image: radial-gradient(#808c9c 1.5px, transparent 1.5px);
+  background-size: 100px 100px;
+  background-color: #10151d;
+  color: #bfc7d2;
 }
 
 body {
