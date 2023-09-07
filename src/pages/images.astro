@@ -1,0 +1,34 @@
+lear---
+import { Image } from 'astro:assets'
+const allImages = await Astro.glob('../../public/images/*.jpg');
+---
+<div id="main">
+    {
+        allImages.map((img) => (
+          <article class="thumb">
+            <a class="image" href={img.default.src.match(/\/images\/.*\?origWidth=\d+&origHeight=\d+&origFormat=jpg/)[0]}>
+              <Image
+                src={img.default.src.match(/\/images\/.*\?origWidth=\d+&origHeight=\d+&origFormat=jpg/)[0]}
+                width="1200"
+                height="900"
+                alt="Astro Multiverse"
+              />
+            </a>
+          </article>
+        ))
+      }
+</div>
+
+<style>
+    body {
+        margin: 0;
+    }
+    div {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    div > article > a > img {
+        width: 100%;
+        height: auto;
+    }
+</style>
