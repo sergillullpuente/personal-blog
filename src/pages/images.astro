@@ -2,33 +2,66 @@ lear---
 import { Image } from 'astro:assets'
 const allImages = await Astro.glob('../../public/images/*.jpg');
 ---
-<div id="main">
-    {
-        allImages.map((img) => (
-          <article class="thumb">
-            <a class="image" href={img.default.src.match(/\/images\/.*\?origWidth=\d+&origHeight=\d+&origFormat=jpg/)[0]}>
-              <Image
-                src={img.default.src.match(/\/images\/.*\?origWidth=\d+&origHeight=\d+&origFormat=jpg/)[0]}
-                width="1200"
-                height="900"
-                alt="Astro Multiverse"
-              />
-            </a>
-          </article>
-        ))
-      }
-</div>
+<main>
+  {
+    allImages.map((img) => (
+      <article>
+        <Image
+          src={img.default.src.match(/\/images\/.*\?origWidth=\d+&origHeight=\d+&origFormat=jpg/)[0]}
+          width="1200"
+          height="900"
+          alt="Astro Multiverse"
+        />
+      </article>
+    ))
+  }
+</main>
 
 <style>
     body {
         margin: 0;
     }
-    div {
+
+    main {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     }
-    div > article > a > img {
-        width: 100%;
-        height: auto;
+
+    article {
+      position: relative;
+      transition: all .3s ease;
     }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      transition: all .3s ease;
+    }
+    
+    article:hover {
+      /*transform: perspective(250px) rotateX(5deg) translateY(-5%) translateZ(0);*/
+    }
+        
+    article::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      background-image: 
+      linear-gradient(
+        to bottom, 
+        transparent 10%, 
+        rgba(0, 0, 0, 0.20) 40%, 
+        rgba(0,0,0, 0.45) 90%
+      );
+      opacity: 0;
+      transition: all .3s ease;
+    }
+
+    article:hover::before {
+      opacity: 1;
+    }
+
 </style>

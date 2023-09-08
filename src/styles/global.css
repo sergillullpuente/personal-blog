@@ -1,13 +1,16 @@
 html {
   font-family: sans-serif;
-  background-image: radial-gradient(#808c9c 1.5px, transparent 1.5px);
+  animation: dotScroll 13s linear infinite;
+  background-image: radial-gradient(circle, #1e205d2e 2px, transparent 0);
   background-size: 100px 100px;
 }
 
 html.dark {
-   background-image: radial-gradient(#808c9c 1.5px, transparent 1.5px);
-  background-size: 100px 100px;
+  background-image: radial-gradient(circle, #2E3C51 2px, transparent 0);
   background-color: #10151d;
+  content: "";
+
+  width: 100%;
   color: #bfc7d2;
 }
 
@@ -92,4 +95,13 @@ h1 {
     display: none;
   }
 
+}
+
+@keyframes dotScroll {
+  0% {
+    background-position-y: 100px;
+  }
+  to {
+    background-position-y: 0;
+  }
 }
